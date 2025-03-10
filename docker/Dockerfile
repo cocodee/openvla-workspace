@@ -34,9 +34,11 @@ ADD ./requirements.txt /workspace/requirements.txt
 RUN pip3 install torch torchvision torchaudio
 
 # Clone openvla-oft repo and pip install to download dependencies
-RUN cd /workspace && git clone https://github.com/moojink/openvla-oft.git && \
-   cd openvla-oft && \
-   pip install -e .
+#RUN cd /workspace && git clone https://github.com/moojink/openvla-oft.git && \
+#   cd openvla-oft && \
+#   pip install -e .
+RUN cd /workspace && \
+    pip install -r requirements.txt
 
 # Install Flash Attention 2 for training (https://github.com/Dao-AILab/flash-attention)
 #   =>> If you run into difficulty, try `pip cache remove flash_attn` first
