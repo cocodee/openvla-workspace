@@ -17,12 +17,10 @@ RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -
 # Put conda in PATH
 ENV PATH=/opt/conda/bin:$PATH
 
-# Initialize Conda for Bash shell
-RUN conda init bash
-
 # Example of installing a specific Python version using conda (optional)
 # RUN conda install -y python=3.9
-RUN conda create -n openvla-oft python=3.10 -y && \
+RUN conda init bash && \
+    conda create -n openvla-oft python=3.10 -y && \
     conda activate openvla-oft
 # Ensure that the base environment is activated when the container starts
 RUN echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
