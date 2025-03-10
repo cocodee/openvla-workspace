@@ -31,18 +31,24 @@ RUN echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
 RUN mkdir /workspace
 ADD ./requirements.txt /workspace/requirements.txt
 
-RUN pip3 install torch torchvision torchaudio
+RUN eval "$(conda shell.bash hook)" && \
+    conda activate openvla-oft && \
+    pip install torch torchvision torchaudio
 
 # Clone openvla-oft repo and pip install to download dependencies
 #RUN cd /workspace && git clone https://github.com/moojink/openvla-oft.git && \
 #   cd openvla-oft && \
 #   pip install -e .
 RUN cd /workspace && \
+    eval "$(conda shell.bash hook)" && \
+    conda activate openvla-oft && \
     pip install -r requirements.txt
 
 # Install Flash Attention 2 for training (https://github.com/Dao-AILab/flash-attention)
 #   =>> If you run into difficulty, try `pip cache remove flash_attn` first
-RUN pip install packaging ninja && \
+RUN eval "$(conda shell.bash hook)" && \
+    conda activate openvla-oft && \    
+    pip install packaging ninja && \
     ninja --version; echo $?  && \
     pip install "flash-attn==2.5.5" --no-build-isolation
 
