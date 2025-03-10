@@ -29,6 +29,7 @@ RUN echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
 # Install PyTorch
 # Use a command specific to your machine: https://pytorch.org/get-started/locally/
 RUN mkdir /workspace
+ADD ./requirements.txt /workspace/requirements.txt
 
 RUN pip3 install torch torchvision torchaudio
 
