@@ -19,8 +19,8 @@ ENV PATH=/opt/conda/bin:$PATH
 
 # Example of installing a specific Python version using conda (optional)
 # RUN conda install -y python=3.9
-RUN conda init bash && \
-    conda create -n openvla-oft python=3.10 -y && \
+RUN conda create -n openvla-oft python=3.10 -y && \
+    conda init bash && \
     conda activate openvla-oft
 # Ensure that the base environment is activated when the container starts
 RUN echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
