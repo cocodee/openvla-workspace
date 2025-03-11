@@ -44,7 +44,8 @@ RUN cd /workspace && \
 
 # Install Flash Attention 2 for training (https://github.com/Dao-AILab/flash-attention)
 #   =>> If you run into difficulty, try `pip cache remove flash_attn` first
-RUN pip install packaging ninja && \
+RUN pip cache remove flash_attn && \
+    pip install packaging ninja && \
     ninja --version; echo $?  && \
     pip install "flash-attn==2.5.5" --no-build-isolation
 
