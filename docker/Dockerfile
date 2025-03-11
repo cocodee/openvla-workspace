@@ -26,7 +26,8 @@ RUN eval "$(conda shell.bash hook)" && \
 RUN echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
     echo "conda activate openvla-oft" >> ~/.bashrc
 
-SHELL ["/bin/bash", "--login", "-c"]
+#SHELL ["/bin/bash", "--login", "-c"]
+SHELL ["conda", "run", "-n", "openvla-opt", "/bin/bash", "-c"]
 # Install PyTorch
 # Use a command specific to your machine: https://pytorch.org/get-started/locally/
 RUN mkdir /workspace
